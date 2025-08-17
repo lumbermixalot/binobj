@@ -19,20 +19,19 @@ so you can link the binary file with your own code.
     and replace `16` with the alignment (in bytes) that is appropriate for
     your data.
 
-4. Add this line to your own source code to declare the data as external:
-
-    `extern "C" const unsigned char MyArray[1024*1024];`
-
-    Replace `unsigned char` with the POD type of your binary data, and
-    replace `1024*1024` with the number of elements that are needed to hold
-    your data. If you don't need to know the size at compile time, then you
-    can also omit the number of elements.
-
-5. Link your own code against the object file, e.g.:
+4. Link your own code against the object file, e.g.:
 
     `cl my_program.cpp my_data.obj`
 
+5. Add these lines to your own source code to declare the data as external:
+
+    `extern "C" const unsigned char MyArray[];`
+    `extern "C" const uint32_t MyArray_size;`
+
+
 ## Alternate solution for other platforms
+
+TODO: Needs validation.
 
 This tool is Windows only, so it won't work on other platforms, like macOS
 or Linux. However, if your platform comes with the GNU Binary Utilities,
